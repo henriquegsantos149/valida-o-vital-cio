@@ -29,16 +29,23 @@
                 <img src="logo.png" alt="Ambiental Pro">
             </div>
 
-            <h1 class="title">Bem-vindo!</h1>
-            <p class="subtitle">Está preparado para aproveitar a melhor oferta de vitalício do ano?<br><br>Primeiro nos
-                conte, você já é aluno de alguma formação da Ambiental Pro?</p>
+            <p class="minor-title">Oferta vitalícia</p>
+            <h1 class="title">Acesse tudo, para sempre.</h1>
+            <p class="subtitle">Antes de continuar, nos diga: você já é aluno de alguma formação da Ambiental Pro?</p>
 
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full shape-brand" onclick="goToStep(2)">Sim, sou aluno</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou
-                    aluno</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
-                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-primary btn-full" onclick="goToStep(2)">
+                    <span class="btn-text">Sim, sou aluno</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-outline btn-full" onclick="redirectTo('nao-aluno')">
+                    <span class="btn-text">Não sou aluno</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
+                    <i class="ph ph-whatsapp-logo btn-icon-left"></i>
+                    <span class="btn-text">Falar com o suporte</span>
+                </button>
             </div>
         </div>
 
@@ -76,9 +83,10 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button type="submit" id="btn-validate" class="btn btn-primary btn-full shape-brand">
+                    <button type="submit" id="btn-validate" class="btn btn-primary btn-full">
                         <span class="btn-text">Validar e-mail</span>
-                        <i class="ph ph-spinner-gap loading-icon"></i>
+                        <i class="ph ph-spinner-gap loading-icon btn-icon-right"></i>
+                        <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                     </button>
                     <button type="button" class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
                 </div>
@@ -99,12 +107,18 @@
             <p class="subtitle">Você pode se matricular com o desconto exclusivo para alunos.</p>
 
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full shape-brand" onclick="redirectTo('aluno')">Fazer
-                    matrícula</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="goToStep(2)">Tentar outro
-                    e-mail</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
-                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-primary btn-full" onclick="redirectTo('aluno')">
+                    <span class="btn-text">Fazer matrícula</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-outline btn-full" onclick="goToStep(2)">
+                    <span class="btn-text">Tentar outro e-mail</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
+                    <i class="ph ph-whatsapp-logo btn-icon-left"></i>
+                    <span class="btn-text">Falar com o suporte</span>
+                </button>
             </div>
         </div>
 
@@ -124,11 +138,18 @@
                 em contato com o suporte.</p>
 
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full shape-brand" onclick="goToStep(2)">Tentar novamente</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou
-                    aluno</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
-                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-primary btn-full" onclick="goToStep(2)">
+                    <span class="btn-text">Tentar novamente</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-outline btn-full" onclick="redirectTo('nao-aluno')">
+                    <span class="btn-text">Não sou aluno</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
+                    <i class="ph ph-whatsapp-logo btn-icon-left"></i>
+                    <span class="btn-text">Falar com o suporte</span>
+                </button>
             </div>
         </div>
     </main>
