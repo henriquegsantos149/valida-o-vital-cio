@@ -7,7 +7,7 @@ const LINKS = {
 
 // URL do Web App do Google Apps Script (a ser preenchida pelo usuário)
 // IMPORTANTE: Insira a URL entre as aspas abaixo após fazer o deploy do Apps Script
-const APPS_SCRIPT_URL = "SUA_URL_DO_APPS_SCRIPT_AQUI";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFAxV1IzXxWnFZq0aaugSgxZyGM3JUIFAmwN1rlpkdkQh8lcWV7HP1vn8Rg0dkw9up/exec";
 
 // Navegação entre steps
 function goToStep(stepNumber) {
@@ -42,10 +42,10 @@ function checkCache() {
         try {
             const data = JSON.parse(cache);
             const now = new Date().getTime();
-            
+
             // Cache expira em 30 dias (30 * 24 * 60 * 60 * 1000)
             const thirtyDays = 2592000000;
-            
+
             if (now - data.validatedAt < thirtyDays && data.found) {
                 // Se já tem cache válido, vai direto para a tela de sucesso
                 document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
@@ -60,27 +60,27 @@ function checkCache() {
 // Lidar com o formulário
 async function handleValidation(event) {
     event.preventDefault();
-    
+
     if (APPS_SCRIPT_URL === "SUA_URL_DO_APPS_SCRIPT_AQUI") {
         alert("Atenção: A URL do Apps Script ainda não foi configurada no arquivo script.js. A validação falhará.");
     }
 
     const email = document.getElementById('email').value.trim();
     const btn = document.getElementById('btn-validate');
-    
+
     // UI - Loading state
     btn.classList.add('loading');
 
     try {
         // Faz a requisição ao Google Apps Script
         const response = await fetch(`${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}`);
-        
+
         if (!response.ok) {
             throw new Error('Erro na requisição');
         }
 
         const data = await response.json();
-        
+
         // Remove loading state
         btn.classList.remove('loading');
 
@@ -94,7 +94,7 @@ async function handleValidation(event) {
                 found: true,
                 validatedAt: new Date().getTime()
             }));
-            
+
             // Vai para tela de sucesso
             document.getElementById('step-success').classList.add('active');
         } else {
