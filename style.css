@@ -287,17 +287,30 @@ select.form-control option {
 }
 
 .btn-support {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--clr-light);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--clr-gray);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0;
+    justify-content: flex-start;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+    margin-top: 0.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
 }
 
 .btn-support:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--clr-light);
+    transform: none;
+    box-shadow: none;
 }
 
 .btn-support i {
+    color: var(--clr-green-1);
     font-size: 1.2rem;
+    margin-right: 0.5rem;
 }
 
 .btn-text-only {
