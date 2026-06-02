@@ -298,6 +298,7 @@ select.form-control option {
     text-transform: none;
     letter-spacing: normal;
     font-weight: 400;
+    font-size: 1.17rem;
 }
 
 .btn-support:hover {
@@ -309,7 +310,7 @@ select.form-control option {
 
 .btn-support i {
     color: var(--clr-green-1);
-    font-size: 1.2rem;
+    font-size: 1.56rem;
     margin-right: 0.5rem;
 }
 
@@ -332,7 +333,12 @@ select.form-control option {
 .loading-icon {
     display: none;
     animation: spin 1s linear infinite;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.75rem;
+    margin-top: -0.75rem;
 }
 
 @keyframes spin {
@@ -342,7 +348,7 @@ select.form-control option {
 }
 
 .btn.loading .btn-text {
-    display: none;
+    visibility: hidden;
 }
 
 .btn.loading .normal-icon {

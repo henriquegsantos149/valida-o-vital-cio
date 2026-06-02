@@ -31,31 +31,7 @@ function redirectTo(destination) {
     }
 }
 
-// Verificação de Cache ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    checkCache();
-});
 
-function checkCache() {
-    const cache = localStorage.getItem('ambiental_pro_validation');
-    if (cache) {
-        try {
-            const data = JSON.parse(cache);
-            const now = new Date().getTime();
-
-            // Cache expira em 30 dias (30 * 24 * 60 * 60 * 1000)
-            const thirtyDays = 2592000000;
-
-            if (now - data.validatedAt < thirtyDays && data.found) {
-                // Se já tem cache válido, vai direto para a tela de sucesso
-                document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
-                document.getElementById('step-success').classList.add('active');
-            }
-        } catch (e) {
-            console.error('Erro ao ler cache', e);
-        }
-    }
-}
 
 // Lidar com o formulário
 async function handleValidation(event) {
@@ -88,13 +64,6 @@ async function handleValidation(event) {
         document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
 
         if (data.found) {
-            // Salva no cache
-            localStorage.setItem('ambiental_pro_validation', JSON.stringify({
-                email: email,
-                found: true,
-                validatedAt: new Date().getTime()
-            }));
-
             // Vai para tela de sucesso
             document.getElementById('step-success').classList.add('active');
         } else {
