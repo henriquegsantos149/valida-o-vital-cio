@@ -2,7 +2,7 @@
 const LINKS = {
     aluno: "https://pay.voompcreators.com.br/2680/offer/jxwz3Z/?cupom=VITALICIOALUNO",
     nao_aluno: "https://pay.voompcreators.com.br/2680/offer/jxwz3Z",
-    suporte: "https://tinyurl.com/suporte-AP"
+    suporte: "https://wa.me/5521988773695?text=Quero%20ser%20atendido(a)%20pela%20equipe%20Ambiental%20Pro"
 };
 
 // URL do Web App do Google Apps Script (a ser preenchida pelo usuário)

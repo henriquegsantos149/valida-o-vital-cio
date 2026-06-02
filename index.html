@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validação Vitalício | Ambiental Pro</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <!-- CSS e Ícones -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
+
 <body>
     <div class="global-grid"></div>
 
@@ -24,14 +28,17 @@
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro">
             </div>
-            
+
             <h1 class="title">Bem-vindo!</h1>
-            <p class="subtitle">Está preparado para aproveitar a melhor oferta de vitalício do ano?<br><br>Primeiro nos conte, você já é aluno de alguma formação da Ambiental Pro?</p>
-            
+            <p class="subtitle">Está preparado para aproveitar a melhor oferta de vitalício do ano?<br><br>Primeiro nos
+                conte, você já é aluno de alguma formação da Ambiental Pro?</p>
+
             <div class="action-buttons">
                 <button class="btn btn-primary btn-full shape-brand" onclick="goToStep(2)">Sim, sou aluno</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou aluno</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou
+                    aluno</button>
+                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
+                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
             </div>
         </div>
 
@@ -40,18 +47,21 @@
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro">
             </div>
-            
+
             <h1 class="title">Validação de Aluno</h1>
             <p class="subtitle">Preencha os dados abaixo para confirmarmos seu cadastro.</p>
-            
+
             <form id="validation-form" onsubmit="handleValidation(event)">
                 <div class="form-group">
                     <label for="formacao">Qual formação você participou?</label>
                     <select id="formacao" required class="form-control">
                         <option value="" disabled selected>Selecione uma formação...</option>
-                        <option value="Pos-GGSR">Pós-Graduação em Georreferenciamento, Geoprocessamento e Sensoriamento Remoto</option>
-                        <option value="Pos-Auditoria">Pós-Graduação em Auditoria, Licenciamento e Perícia Ambiental</option>
-                        <option value="Pos-Remediacao">Pós-Graduação em Gerenciamento e Remediação de Áreas Contaminadas</option>
+                        <option value="Pos-GGSR">Pós-Graduação em Georreferenciamento, Geoprocessamento e Sensoriamento
+                            Remoto</option>
+                        <option value="Pos-Auditoria">Pós-Graduação em Auditoria, Licenciamento e Perícia Ambiental
+                        </option>
+                        <option value="Pos-Remediacao">Pós-Graduação em Gerenciamento e Remediação de Áreas Contaminadas
+                        </option>
                         <option value="MBA-Dados">MBA em Inteligência de Dados Ambientais</option>
                         <option value="PAP">Programa Ambiental Pro (PAP)</option>
                         <option value="Python-GeoDev">Python GeoDev</option>
@@ -80,18 +90,21 @@
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro">
             </div>
-            
+
             <div class="status-icon success">
                 <i class="ph ph-check-circle"></i>
             </div>
-            
+
             <h1 class="title">Validação bem-sucedida!</h1>
-            <p class="subtitle">Você pode se matricular com o desconto exclusivo para alunos.<br><br>Caso ache que ocorreu algum erro na validação, tente novamente com o e-mail que você possui o cadastro, ou entre em contato com o suporte.</p>
-            
+            <p class="subtitle">Você pode se matricular com o desconto exclusivo para alunos.</p>
+
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full shape-brand" onclick="redirectTo('aluno')">Fazer matrícula</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="goToStep(2)">Tentar outro e-mail</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-primary btn-full shape-brand" onclick="redirectTo('aluno')">Fazer
+                    matrícula</button>
+                <button class="btn btn-outline btn-full shape-brand-alt" onclick="goToStep(2)">Tentar outro
+                    e-mail</button>
+                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
+                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
             </div>
         </div>
 
@@ -100,22 +113,27 @@
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro">
             </div>
-            
+
             <div class="status-icon error">
                 <i class="ph ph-x-circle"></i>
             </div>
-            
+
             <h1 class="title">E-mail não encontrado</h1>
-            <p class="subtitle">Más notícias, não encontramos o seu e-mail entre os alunos cadastrados.</p>
-            
+            <p class="subtitle">Más notícias, não encontramos o seu e-mail entre os alunos cadastrados!<br><br>Caso ache
+                que ocorreu algum erro na validação, tente novamente com o e-mail que você possui o cadastro, ou entre
+                em contato com o suporte.</p>
+
             <div class="action-buttons">
                 <button class="btn btn-primary btn-full shape-brand" onclick="goToStep(2)">Tentar novamente</button>
-                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou aluno</button>
-                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
+                <button class="btn btn-outline btn-full shape-brand-alt" onclick="redirectTo('nao-aluno')">Não sou
+                    aluno</button>
+                <button class="btn btn-support btn-full shape-brand" onclick="redirectTo('suporte')"><i
+                        class="ph ph-whatsapp-logo"></i> Falar com o suporte</button>
             </div>
         </div>
     </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>
