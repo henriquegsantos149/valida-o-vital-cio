@@ -130,13 +130,18 @@ body {
 
 /* Typography Elements */
 .logo-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
     margin-bottom: 2.5rem;
 }
 
 .logo-container img {
-    height: 100px;
+    height: 60px;
     width: auto;
+    object-fit: contain;
+    max-width: 45%;
 }
 
 .title {
