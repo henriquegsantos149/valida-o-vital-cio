@@ -1,9 +1,10 @@
 // Links fornecidos
 const LINKS = {
-    aluno: "https://pay.voompcreators.com.br/2680/offer/jxwz3Z/?cupom=VITALICIOALUNO",
     nao_aluno: "https://pay.voompcreators.com.br/2680/offer/jxwz3Z",
-    suporte: "https://wa.me/5521988773695?text=Quero%20ser%20atendido(a)%20pela%20equipe%20Ambiental%20Pro"
+    suporte: "https://tinyurl.com/suporte-AP"
 };
+
+let alunoCheckoutLink = ""; // Link seguro que virá do backend
 
 // URL do Web App do Google Apps Script (a ser preenchida pelo usuário)
 // IMPORTANTE: Insira a URL entre as aspas abaixo após fazer o deploy do Apps Script
@@ -25,6 +26,11 @@ function goToStep(stepNumber) {
 
 // Redirecionamento
 function redirectTo(destination) {
+    if (destination === 'aluno' && alunoCheckoutLink) {
+        window.location.href = alunoCheckoutLink;
+        return;
+    }
+
     const url = LINKS[destination.replace('-', '_')];
     if (url) {
         window.location.href = url;
@@ -64,6 +70,11 @@ async function handleValidation(event) {
         document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
 
         if (data.found) {
+            // Salva o link de checkout retornado pelo backend
+            if (data.checkoutUrl) {
+                alunoCheckoutLink = data.checkoutUrl;
+            }
+            
             // Vai para tela de sucesso
             document.getElementById('step-success').classList.add('active');
         } else {
