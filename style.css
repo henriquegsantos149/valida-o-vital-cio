@@ -38,6 +38,7 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,8 +92,10 @@ body {
 }
 
 .card-overlay {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
-        inset 0 0 0 1px rgba(111, 176, 58, 0.1);
+    box-shadow: 0 0 30px rgba(111, 176, 58, 0.15),
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        inset 0 0 0 1px rgba(111, 176, 58, 0.2);
+    border: 1px solid rgba(111, 176, 58, 0.3) !important;
 }
 
 /* Wizard Container */
@@ -372,5 +375,13 @@ select.form-control option {
 
     .title {
         font-size: 1.6rem;
+    }
+    
+    .global-grid {
+        background-size: 40px 40px;
+    }
+    
+    .global-grid::after {
+        background: radial-gradient(circle at 50% 50%, transparent 0%, var(--clr-black) 90%);
     }
 }
