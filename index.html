@@ -36,11 +36,11 @@
 
             <div class="action-buttons">
                 <button class="btn btn-primary btn-full" onclick="goToStep(2)">
-                    <span class="btn-text">Sim, sou aluno</span>
+                    <span class="btn-text">Já sou aluno</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
-                <button class="btn btn-outline btn-full" onclick="redirectTo('nao-aluno')">
-                    <span class="btn-text">Não sou aluno</span>
+                <button class="btn btn-primary btn-full" onclick="goToStep('nao-aluno')">
+                    <span class="btn-text">Ainda não sou aluno</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
@@ -142,14 +142,33 @@
                     <span class="btn-text">Tentar novamente</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
-                <button class="btn btn-outline btn-full" onclick="redirectTo('nao-aluno')">
-                    <span class="btn-text">Não sou aluno</span>
+                <button class="btn btn-primary btn-full" onclick="goToStep('nao-aluno')">
+                    <span class="btn-text">Ainda não sou aluno</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
                     <i class="ph ph-whatsapp-logo"></i>
                     <span class="btn-text">Ainda tenho dúvidas</span>
                 </button>
+            </div>
+        </div>
+
+        <!-- TELA 4: Não Aluno -->
+        <div id="step-nao-aluno" class="wizard-step shape-brand layer-1 card-overlay text-center">
+            <div class="logo-container">
+                <img src="logo.png" alt="Ambiental Pro" class="logo-main">
+                <img src="Logo PAP.png" alt="PAP" class="logo-pap">
+            </div>
+
+            <h1 class="title">Seja bem-vindo(a)!</h1>
+            <p class="subtitle">Você acabou de dar o primeiro passo para transformar a sua carreira profissional, como centenas de outros profissionais do setor ambiental que já confiam nas nossas formações. Garanta o seu acesso antes que o prazo acabe.</p>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary btn-full" onclick="redirectTo('nao-aluno')">
+                    <span class="btn-text">Quero me tornar um aluno Pro</span>
+                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
+                </button>
+                <button class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
             </div>
         </div>
     </main>
