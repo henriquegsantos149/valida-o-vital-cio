@@ -29,6 +29,26 @@ async function handleValidation(event) {
     const email = document.getElementById('email').value.trim().toLowerCase();
     btn.disabled = true;
     btn.classList.add('loading');
+    btn.setAttribute('aria-busy', 'true');
+    const back = document.getElementById('validation-back');
+    back.disabled = true;
+    const progress = document.getElementById('validation-progress');
+    const status = document.getElementById('validation-progress-status');
+    progress.hidden = false;
+    status.textContent = 'Consultando seu cadastro. Progresso estimado.';
+    let percentage = 0;
+    const renderProgress = value => {
+        document.getElementById('validation-percent').textContent = `${value}%`;
+        document.getElementById('validation-progress-fill').style.width = `${value}%`;
+        document.getElementById('validation-progressbar').setAttribute('aria-valuenow', String(value));
+    };
+    renderProgress(0);
+    const startedAt = Date.now();
+    const progressTimer = setInterval(() => {
+        percentage = Math.min(95, Math.floor(95 * (1 - Math.exp(-(Date.now() - startedAt) / 4500))));
+        renderProgress(percentage);
+        if (Date.now() - startedAt > 10000) status.textContent = 'A consulta está demorando um pouco. Aguarde mais alguns instantes.';
+    }, 250);
     try {
         const url = new URL(APPS_SCRIPT_URL);
         url.searchParams.set('email', email);
@@ -37,6 +57,10 @@ async function handleValidation(event) {
         const data = await response.json();
         if (data.error === 'configuration') throw new Error('configuration');
         if (data.error || typeof data.found !== 'boolean') throw new Error('service');
+        clearInterval(progressTimer);
+        renderProgress(100);
+        status.textContent = 'Consulta concluída.';
+        await new Promise(resolve => setTimeout(resolve, 250));
         if (!data.found) {
             goToStep('error');
             return;
@@ -52,6 +76,10 @@ async function handleValidation(event) {
             ? 'A consulta de alunos precisa ser configurada. Fale com o suporte.'
             : 'Não foi possível consultar seu cadastro agora. Tente novamente ou fale com o suporte.';
     } finally {
+        clearInterval(progressTimer);
+        progress.hidden = true;
+        back.disabled = false;
+        btn.removeAttribute('aria-busy');
         btn.disabled = false;
         btn.classList.remove('loading');
     }

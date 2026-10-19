@@ -482,3 +482,11 @@ body::after {
 
 [hidden] { display: none !important; }
 #validation-message:not(:empty) { margin-bottom: 1rem; color: #f2cf00; }
+
+.validation-loading { display: none; }
+.btn.loading .validation-loading { display: inline; font-size: .82rem; letter-spacing: 0; text-transform: none; }
+.btn.loading .btn-text { display: none; }
+.validation-progressbar { height: 6px; overflow: hidden; border-radius: 999px; background: #ffffff15; }
+#validation-progress-fill { display: block; height: 100%; width: 0; background: var(--gradient-brand); transition: width .25s linear; border-radius: inherit; }
+#validation-progress-status { margin-top: 10px; font-size: .75rem; color: #a3a8ae; line-height: 1.5; text-align: center; }
+@media (prefers-reduced-motion: reduce) { #validation-progress-fill { transition: none; } }

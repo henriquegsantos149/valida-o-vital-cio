@@ -68,10 +68,14 @@
                 <div class="action-buttons">
                     <button type="submit" id="btn-validate" class="btn btn-primary btn-full">
                         <span class="btn-text">Validar meu e-mail</span>
-                        <i class="ph ph-spinner-gap loading-icon"></i>
+                        <span class="validation-loading" aria-hidden="true">Consultando cadastro · <span id="validation-percent">0%</span></span>
                         <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                     </button>
-                    <button type="button" class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
+                    <div id="validation-progress" hidden>
+                        <div id="validation-progressbar" class="validation-progressbar" role="progressbar" aria-label="Progresso estimado da consulta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="validation-progress-fill"></span></div>
+                        <p id="validation-progress-status" role="status" aria-live="polite">Consultando seu cadastro. Progresso estimado.</p>
+                    </div>
+                    <button type="button" id="validation-back" class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
                 </div>
             </form>
         </div>
