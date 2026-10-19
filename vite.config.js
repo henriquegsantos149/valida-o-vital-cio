@@ -7,7 +7,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         black: resolve(__dirname, 'black/index.html'),
-        pos: resolve(__dirname, 'black/pos.html')
+        pos: resolve(__dirname, 'black/pos/index.html')
       }
     }
   }
