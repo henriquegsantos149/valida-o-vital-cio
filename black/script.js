@@ -46,7 +46,7 @@ async function handleValidation(event) {
             if (target.protocol !== 'https:') throw new Error('invalid_destination');
             groupUrl = target.href;
         }
-        window.location.assign(new URL('./pos/', window.location.href).href);
+        window.location.assign(new URL('/black/pos/', window.location.origin).href);
     } catch (error) {
         message.textContent = error.message === 'configuration'
             ? 'A consulta de alunos precisa ser configurada. Fale com o suporte.'
