@@ -479,3 +479,6 @@ body::after {
     .wizard-step, .loading-icon { animation: none; }
     .btn, .form-control { transition: none; }
 }
+
+[hidden] { display: none !important; }
+#validation-message:not(:empty) { margin-bottom: 1rem; color: #f2cf00; }

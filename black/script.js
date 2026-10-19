@@ -1,95 +1,62 @@
-// Links fornecidos
-const LINKS = {
-    nao_aluno: "https://pay.voompcreators.com.br/2680/offer/jxwz3Z",
-    suporte: "https://tinyurl.com/suporte-AP"
-};
+// Preencha com a URL /exec da implantação de integrations/black-friday.gs.
+// Não reutilize o endpoint da oferta anterior.
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFw1Qolr9t-MKoEa4kwcGpTKmzvTktBHqj0Ifgi7dkVKQLZk4Iu4UZpmQPbO0zVYA/exec';
+const GROUP_URL = 'https://sndflw.com/i/QqsIe4Lyew4On6qkVv5o';
+const SUPPORT_URL = 'https://tinyurl.com/suporte-AP';
+let groupUrl = '';
 
-let alunoCheckoutLink = ""; // Link seguro que virá do backend
-
-// URL do Web App do Google Apps Script (a ser preenchida pelo usuário)
-// IMPORTANTE: Insira a URL entre as aspas abaixo após fazer o deploy do Apps Script
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFAxV1IzXxWnFZq0aaugSgxZyGM3JUIFAmwN1rlpkdkQh8lcWV7HP1vn8Rg0dkw9up/exec";
-
-// Navegação entre steps
 function goToStep(stepNumber) {
-    // Esconde todos os steps
-    document.querySelectorAll('.wizard-step').forEach(step => {
-        step.classList.remove('active');
-    });
-
-    // Mostra o step desejado
-    const target = document.getElementById(`step-${stepNumber}`);
-    if (target) {
-        target.classList.add('active');
-    }
+    document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+    document.getElementById(`step-${stepNumber}`)?.classList.add('active');
 }
 
-// Redirecionamento
 function redirectTo(destination) {
-    if (destination === 'aluno' && alunoCheckoutLink) {
-        window.location.href = alunoCheckoutLink;
-        return;
-    }
-
-    const url = LINKS[destination.replace('-', '_')];
-    if (url) {
-        window.location.href = url;
-    }
+    if (destination === 'suporte') window.location.href = SUPPORT_URL;
+    if (destination === 'aluno' && groupUrl) window.location.href = groupUrl;
 }
 
-
-
-// Lidar com o formulário
 async function handleValidation(event) {
     event.preventDefault();
-
-    if (APPS_SCRIPT_URL === "SUA_URL_DO_APPS_SCRIPT_AQUI") {
-        alert("Atenção: A URL do Apps Script ainda não foi configurada no arquivo script.js. A validação falhará.");
-    }
-
-    const email = document.getElementById('email').value.trim();
     const btn = document.getElementById('btn-validate');
-
-    // UI - Loading state
+    if (btn.disabled) return;
+    const message = document.getElementById('validation-message');
+    message.textContent = '';
+    groupUrl = '';
+    if (!APPS_SCRIPT_URL) {
+        message.textContent = 'A consulta de alunos estará disponível em breve. Se precisar, fale com o suporte.';
+        return;
+    }
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    btn.disabled = true;
     btn.classList.add('loading');
-
     try {
-        // Faz a requisição ao Google Apps Script
-        const response = await fetch(`${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}`);
-
-        if (!response.ok) {
-            throw new Error('Erro na requisição');
-        }
-
+        const url = new URL(APPS_SCRIPT_URL);
+        url.searchParams.set('email', email);
+        const response = await fetch(url, { signal: AbortSignal.timeout(20000), cache: 'no-store' });
+        if (!response.ok) throw new Error('service');
         const data = await response.json();
-
-        // Remove loading state
-        btn.classList.remove('loading');
-
-        // Esconde todos os steps
-        document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
-
-        if (data.found) {
-            // Salva o link de checkout retornado pelo backend
-            if (data.checkoutUrl) {
-                alunoCheckoutLink = data.checkoutUrl;
-            }
-            
-            // Vai para tela de sucesso
-            document.getElementById('step-success').classList.add('active');
-        } else {
-            // Vai para tela de erro
-            document.getElementById('step-error').classList.add('active');
+        if (data.error === 'configuration') throw new Error('configuration');
+        if (data.error || typeof data.found !== 'boolean') throw new Error('service');
+        if (!data.found) {
+            goToStep('error');
+            return;
         }
-
+        if (GROUP_URL || data.groupUrl) {
+            const target = new URL(GROUP_URL || data.groupUrl);
+            if (target.protocol !== 'https:') throw new Error('invalid_destination');
+            groupUrl = target.href;
+        }
+        window.location.assign(new URL('./pos.html', window.location.href).href);
     } catch (error) {
-        console.error('Erro durante a validação:', error);
+        message.textContent = error.message === 'configuration'
+            ? 'A consulta de alunos precisa ser configurada. Fale com o suporte.'
+            : 'Não foi possível consultar seu cadastro agora. Tente novamente ou fale com o suporte.';
+    } finally {
+        btn.disabled = false;
         btn.classList.remove('loading');
-        alert("Ocorreu um erro ao conectar com o servidor. Por favor, tente novamente ou contate o suporte.");
     }
 }
 
-// Expõe para os manipuladores inline do HTML
 window.goToStep = goToStep;
 window.redirectTo = redirectTo;
 window.handleValidation = handleValidation;

@@ -1,0 +1,94 @@
+:root {
+ --primary-dark:#090d0e;
+ --green-1:#8ee322;
+ --green-2:#d5ed22;
+ --teal-blue:#10b6c7;
+ --brand-gradient:linear-gradient(110deg,#10b6c7,#8ee322 60%,#d5ed22);
+ --bf-spectrum:linear-gradient(110deg,#10b6c7 0%,#8ee322 33%,#f2cf00 57%,#ff7538 78%,#ed0068 100%);
+}
+body {background:radial-gradient(ellipse at 85% 10%,#10b6c710,transparent 45%),#090d0e;}
+.campaign-hero {padding-top:60px;padding-bottom:80px;text-align:center;}
+.campaign-label {font-family:var(--font-primary);font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:30px;}
+.campaign-label span {background:var(--bf-spectrum);color:#050505;padding:3px 8px;}
+.eyebrow {color:#8ee322;text-transform:uppercase;font-weight:700;letter-spacing:2px;font-size:.75rem;}
+.campaign-hero h1 {font-family:var(--font-primary);font-size:clamp(2rem,4vw,3.5rem);line-height:1.18;margin:20px auto 24px;max-width:950px;}
+.campaign-hero>p:not(.campaign-label):not(.eyebrow) {max-width:720px;margin:0 auto 32px;color:#b8c1c1;font-size:1.05rem;}
+.btn {text-decoration:none;}
+.btn-primary {background:var(--brand-gradient);color:#050505;}
+.btn-primary:hover {background:#fff;color:#050505;}
+.explore {display:block;width:fit-content;margin:24px auto 0;color:#b8c1c1;text-decoration:none;}
+.course-group {display:flex;margin:20px 0 12px;}
+.course-card {border:1px solid transparent;background:linear-gradient(#11191a,#0d1314) padding-box,var(--bf-spectrum) border-box;}
+.course-grac .course-logo {mix-blend-mode:normal!important;background:#fff;border-radius:8px;padding:12px;}
+.campaign-end {text-align:center;padding-top:70px;padding-bottom:70px;}
+.campaign-end h2 {font-family:var(--font-primary);font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:20px;}
+.campaign-end p {color:#b8c1c1;max-width:660px;margin:0 auto 26px;}
+.campaign-end .admission-note {font-size:.8rem;margin-top:24px;}
+a:focus-visible,button:focus-visible {outline:2px solid #10b6c7;outline-offset:5px;}
+@media(max-width:600px){.campaign-hero{padding-top:32px;padding-bottom:50px;}.campaign-label{font-size:.95rem;}.campaign-hero h1 br{display:none;}.campaign-hero .btn,.campaign-end .btn{width:100%;}.btn{white-space:normal;text-align:center;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+.course-desc,.course-details ul li {color:#b8c1c1;}
+.course-title,.highlight-value {color:#f2f5f4;}
+.course-details.active {max-height:none;}
+.course-details ul li::before {color:#10b6c7;}
+
+/* Primeira dobra: cabeçalho e hero ocupam juntos a tela inteira. */
+.first-screen {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+.first-screen .header {
+    position: static;
+    flex-shrink: 0;
+    padding: 28px 0;
+}
+.first-screen .campaign-hero {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 56px;
+}
+.first-screen .campaign-label { margin-bottom: 24px; }
+.first-screen .campaign-hero .btn { flex-shrink: 0; }
+@media (max-width: 600px) {
+    .first-screen .header { padding: 22px 0; }
+    .first-screen .logos-container { gap: 18px; }
+    .first-screen .logo { height: 36px; max-width: 44%; }
+    .first-screen .logo-anhanguera { height: 44px; }
+    .first-screen .campaign-hero { padding: 24px 20px 40px; }
+}
+/* Fechamento compacto, sem o espaçamento herdado da página de bolsa. */
+.campaign-end {
+    padding: 56px 24px 32px;
+    max-width: 880px;
+}
+.campaign-end h2 {
+    max-width: 680px;
+    margin: 0 auto 18px;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    line-height: 1.25;
+    text-wrap: balance;
+}
+.campaign-end > p { margin-bottom: 24px; }
+.campaign-end .admission-note {
+    max-width: 580px;
+    margin: 20px auto 0;
+    line-height: 1.6;
+    color: #909c9c;
+}
+.footer {
+    margin-top: 0;
+    padding: 24px 20px;
+    background: #090d0e;
+    color: #909c9c;
+    font-size: .8rem;
+}
+.footer a { display: inline-block; margin-top: 8px; color: #b8c1c1; }
+@media (max-width: 600px) {
+    .campaign-end { padding: 40px 20px 28px; }
+}

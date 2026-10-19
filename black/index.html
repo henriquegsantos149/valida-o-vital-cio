@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Friday | Validação Vitalício | Ambiental Pro</title>
+    <title>Black Friday para Alunos | Ambiental Pro</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,25 +27,19 @@
             <div class="bf-campaign-name"><span>BLACK</span> FRIDAY</div>
             <span class="bf-campaign-brand">AMBIENTAL PRO</span>
         </div>
-        <!-- TELA 1: Pergunta inicial -->
+        <!-- TELA 1: Oferta exclusiva para alunos -->
         <div id="step-1" class="wizard-step active shape-brand layer-1 card-overlay">
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro" class="logo-main">
-                <img src="Logo PAP.png" alt="PAP" class="logo-pap">
             </div>
 
-            <p class="minor-title">Oferta vitalícia</p>
-            <h1 class="title">Acesse tudo, para sempre.</h1>
-            <p class="subtitle">Antes de continuar, nos diga: <strong>você já é aluno de alguma formação da Ambiental
-                    Pro?</strong></p>
+            <p class="minor-title">Exclusivo para alunos</p>
+            <h1 class="title">Você já é Pro. Sua Black Friday também.</h1>
+            <p class="subtitle">Quem já estuda com a Ambiental Pro tem uma <strong>condição exclusiva de Black Friday.</strong> Valide seu cadastro para entrar no grupo exclusivo de alunos.</p>
 
             <div class="action-buttons">
                 <button class="btn btn-primary btn-full" onclick="goToStep(2)">
-                    <span class="btn-text">Já sou aluno</span>
-                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
-                </button>
-                <button class="btn btn-primary btn-full" onclick="goToStep('nao-aluno')">
-                    <span class="btn-text">Ainda não sou aluno</span>
+                    <span class="btn-text">Conferir minha condição</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
@@ -59,39 +53,21 @@
         <div id="step-2" class="wizard-step shape-brand layer-1 card-overlay">
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro" class="logo-main">
-                <img src="Logo PAP.png" alt="PAP" class="logo-pap">
             </div>
 
-            <h1 class="title">Validação de Aluno</h1>
-            <p class="subtitle">Preencha os dados abaixo para confirmarmos seu cadastro.</p>
+            <h1 class="title">Confirme seu cadastro</h1>
+            <p class="subtitle">Informe o e-mail usado na matrícula para liberar seu acesso ao grupo exclusivo de Black Friday para alunos.</p>
 
+            <p id="validation-message" role="status" aria-live="polite"></p>
             <form id="validation-form" onsubmit="handleValidation(event)">
-                <div class="form-group">
-                    <label for="formacao">Qual formação você participou?</label>
-                    <select id="formacao" required class="form-control">
-                        <option value="" disabled selected>Selecione uma formação...</option>
-                        <option value="Pos-GGSR">Pós-Graduação em Georreferenciamento, Geoprocessamento e Sensoriamento
-                            Remoto</option>
-                        <option value="Pos-Auditoria">Pós-Graduação em Auditoria, Licenciamento e Perícia Ambiental
-                        </option>
-                        <option value="Pos-Remediacao">Pós-Graduação em Gerenciamento e Remediação de Áreas Contaminadas
-                        </option>
-                        <option value="MBA-Dados">MBA em Inteligência de Dados Ambientais</option>
-                        <option value="PAP">Programa Ambiental Pro (PAP)</option>
-                        <option value="Python-GeoDev">Python GeoDev</option>
-                        <option value="F2W">F2W</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
+<div class="form-group">
                     <label for="email">E-mail de cadastro</label>
                     <input type="email" id="email" required class="form-control" placeholder="seu.email@exemplo.com">
                 </div>
 
                 <div class="action-buttons">
                     <button type="submit" id="btn-validate" class="btn btn-primary btn-full">
-                        <span class="btn-text">Validar e-mail</span>
+                        <span class="btn-text">Validar meu e-mail</span>
                         <i class="ph ph-spinner-gap loading-icon"></i>
                         <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                     </button>
@@ -104,20 +80,18 @@
         <div id="step-success" class="wizard-step shape-brand layer-1 card-overlay text-center">
             <div class="logo-container">
                 <img src="logo.png" alt="Ambiental Pro" class="logo-main">
-                <img src="Logo PAP.png" alt="PAP" class="logo-pap">
             </div>
 
             <div class="status-icon success">
                 <i class="ph ph-check-circle"></i>
             </div>
 
-            <h1 class="title">Seu desconto está reservado.</h1>
-            <p class="subtitle">Como aluno Ambiental Pro, você tem acesso à oferta vitalícia com condições exclusivas.
-                Essa é <strong>a menor mensalidade</strong> que você vai pagar, <strong>para sempre!</strong></p>
+            <h1 class="title">Você está na lista!</h1>
+            <p class="subtitle" id="group-message">Seu e-mail consta na nossa lista de alunos. O acesso ao grupo será disponibilizado em breve.</p>
 
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full" onclick="redirectTo('aluno')">
-                    <span class="btn-text">Garantir meu acesso vitalício</span>
+                <button id="btn-group" hidden class="btn btn-primary btn-full" onclick="redirectTo('aluno')">
+                    <span class="btn-text">Entrar no grupo</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
@@ -135,18 +109,11 @@
             </div>
 
             <h1 class="title">Não encontramos<br> este e-mail</h1>
-            <p class="subtitle">Se você já é aluno, verifique se utilizou o e-mail usado no cadastro corretamente ou
-                entre em contato com o suporte.<br><br> Se ainda não faz parte da Ambiental Pro, esse pode ser o momento
-                certo
-                para começar, <strong> aproveite essa oportunidade antes que o prazo acabe!</strong></p>
+            <p class="subtitle">Confira se digitou o <strong>mesmo e-mail usado na sua matrícula.</strong> Se o cadastro estiver em outro endereço ou você precisar de ajuda, fale com nosso suporte para verificar sua condição de aluno.</p>
 
             <div class="action-buttons">
                 <button class="btn btn-primary btn-full" onclick="goToStep(2)">
                     <span class="btn-text">Tentar novamente</span>
-                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
-                </button>
-                <button class="btn btn-primary btn-full" onclick="goToStep('nao-aluno')">
-                    <span class="btn-text">Quero me tornar um aluno Pro</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
@@ -156,28 +123,6 @@
             </div>
         </div>
 
-        <!-- TELA 4: Não Aluno -->
-        <div id="step-nao-aluno" class="wizard-step shape-brand layer-1 card-overlay text-center">
-            <div class="logo-container">
-                <img src="logo.png" alt="Ambiental Pro" class="logo-main">
-                <img src="Logo PAP.png" alt="PAP" class="logo-pap">
-            </div>
-
-            <h1 class="title">Seja bem-vindo(a)!</h1>
-            <p class="subtitle">Você acabou de dar o primeiro passo para <strong>transformar a sua carreira</strong>
-                profissional.<br><br> Faça como <strong>centenas de outros profissionais</strong> do setor ambiental que
-                já confiam
-                nas nossas
-                formações.<br><br> Garanta o seu acesso <strong>antes que o prazo acabe!</strong></p>
-
-            <div class="action-buttons">
-                <button class="btn btn-primary btn-full" onclick="redirectTo('nao-aluno')">
-                    <span class="btn-text">Quero me tornar um aluno Pro</span>
-                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
-                </button>
-                <button class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
-            </div>
-        </div>
     </main>
 
     <script type="module" src="./script.js"></script>
