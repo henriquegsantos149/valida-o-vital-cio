@@ -92,3 +92,14 @@ a:focus-visible,button:focus-visible {outline:2px solid #10b6c7;outline-offset:5
 @media (max-width: 600px) {
     .campaign-end { padding: 40px 20px 28px; }
 }
+/* Professores: contraste consistente nos estados normal e hover. */
+.faculty-group > strong { color: #f2f5f4; }
+.faculty-card { background: #172021; border-color: #344546; }
+.faculty-card:hover { background: #202d2f; border-color: #10b6c7; }
+.faculty-card .faculty-name { color: #f2f5f4; }
+.faculty-card .faculty-title { color: #c2cdcd; }
+/* Reserva espaço para a elevação dos cards dentro da área rolável. */
+.faculty-avatars {
+    padding-top: 10px;
+    padding-bottom: 6px;
+}
