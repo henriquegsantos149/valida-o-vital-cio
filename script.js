@@ -88,3 +88,8 @@ async function handleValidation(event) {
         alert("Ocorreu um erro ao conectar com o servidor. Por favor, tente novamente ou contate o suporte.");
     }
 }
+
+// Expõe para os manipuladores inline do HTML
+window.goToStep = goToStep;
+window.redirectTo = redirectTo;
+window.handleValidation = handleValidation;
