@@ -117,12 +117,12 @@ a:focus-visible,button:focus-visible {outline:2px solid #10b6c7;outline-offset:5
  width: 60px;
  height: 60px;
  border-radius: 50%;
- background: #25d366;
- color: #062d16;
+ background: var(--green-1);
+ color: #090d0e;
  border: 1px solid #ffffff40;
  box-shadow: 0 6px 24px #0008;
  transition: transform .2s, background .2s;
 }
 .commercial-whatsapp svg { width: 30px; height: 30px; }
-.commercial-whatsapp:hover { transform: translateY(-3px); background: #58e68d; }
+.commercial-whatsapp:hover { transform: translateY(-3px); background: var(--green-2); }
 @media(max-width:600px) { .commercial-whatsapp { width: 54px; height: 54px; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); } .footer { padding-bottom: 88px; } }
