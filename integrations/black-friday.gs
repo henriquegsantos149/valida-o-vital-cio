@@ -2,8 +2,11 @@
 // Vínculo confirmado quando a célula contém o nome do curso; vazio significa sem vínculo.
 function doGet(e) {
   function responder(dados) {
-    return ContentService.createTextOutput(JSON.stringify(dados))
+    return ContentService.createTextOutput(JSON.stringify(Object.assign({ version: 'BF-2026-10-22-v3' }, dados)))
       .setMimeType(ContentService.MimeType.JSON);
+  }
+  if (e && e.parameter && e.parameter.action === 'status') {
+    return responder({ status: 'ok' });
   }
   const email = String(e && e.parameter ? e.parameter.email || '' : '')
     .trim().toLowerCase();
