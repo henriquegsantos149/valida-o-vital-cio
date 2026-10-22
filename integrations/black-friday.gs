@@ -1,4 +1,5 @@
-// Segunda aba da esquerda para a direita; coluna B; linha 1 como cabeçalho.
+// E-mail em B; vínculo com pós em E e extensão em F, na mesma linha.
+// Vínculo confirmado quando a célula contém o nome do curso; vazio significa sem vínculo.
 function doGet(e) {
   function responder(dados) {
     return ContentService.createTextOutput(JSON.stringify(dados))
@@ -7,21 +8,26 @@ function doGet(e) {
   const email = String(e && e.parameter ? e.parameter.email || '' : '')
     .trim().toLowerCase();
   if (!email) return responder({ error: 'invalid_email' });
+  const tipo = String(e && e.parameter ? e.parameter.tipo || '' : '');
+  if (tipo !== 'pos' && tipo !== 'extensao') return responder({ error: 'invalid_type' });
   try {
     const planilha = SpreadsheetApp.openById(
       '1hotexxzz-zhzHJhnY1dvQbJgZWUQnKnqSk_6ZfKMiQI'
     );
-    const aba = planilha.getSheets()[1];
+    const aba = planilha.getSheetByName('Dados Alunos - Atualizado em 21/10/26');
     if (!aba) return responder({ error: 'configuration' });
     const ultimaLinha = aba.getLastRow();
     if (ultimaLinha < 2) return responder({ found: false });
-    const emails = aba.getRange(2, 2, ultimaLinha - 1, 1).getDisplayValues();
-    const encontrado = emails.some(function (linha) {
-      return String(linha[0]).trim().toLowerCase() === email;
+    const dados = aba.getRange(2, 2, ultimaLinha - 1, 5).getDisplayValues();
+    const indiceVinculo = tipo === 'pos' ? 3 : 4;
+    const encontrado = dados.some(function (linha) {
+      const mesmoEmail = String(linha[0]).trim().toLowerCase() === email;
+      const vinculo = String(linha[indiceVinculo]).trim().toLowerCase();
+      return mesmoEmail && vinculo !== ''; 
     });
     return responder(encontrado ? {
       found: true,
-      groupUrl: 'https://sndflw.com/i/QqsIe4Lyew4On6qkVv5o'
+      tipo: tipo
     } : { found: false });
   } catch (erro) {
     return responder({ error: 'service_unavailable' });

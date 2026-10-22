@@ -1,9 +1,17 @@
 // Preencha com a URL /exec da implantação de integrations/black-friday.gs.
 // Não reutilize o endpoint da oferta anterior.
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFw1Qolr9t-MKoEa4kwcGpTKmzvTktBHqj0Ifgi7dkVKQLZk4Iu4UZpmQPbO0zVYA/exec';
-const GROUP_URL = 'https://sndflw.com/i/QqsIe4Lyew4On6qkVv5o';
+const COMMERCIAL_PHONE = '5521982639824';
 const SUPPORT_URL = 'https://tinyurl.com/suporte-AP';
-let groupUrl = '';
+let studentType = 'pos';
+
+function selectStudentType(type) {
+    studentType = type;
+    document.getElementById('validation-title').textContent = type === 'pos' ? 'Valide seu cadastro de pós' : 'Valide seu cadastro de extensão';
+    document.getElementById('validation-message').textContent = '';
+    document.getElementById('cashback-whatsapp').removeAttribute('href');
+    goToStep(2);
+}
 
 function goToStep(stepNumber) {
     document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
@@ -12,7 +20,7 @@ function goToStep(stepNumber) {
 
 function redirectTo(destination) {
     if (destination === 'suporte') window.location.href = SUPPORT_URL;
-    if (destination === 'aluno' && groupUrl) window.location.href = groupUrl;
+
 }
 
 async function handleValidation(event) {
@@ -21,7 +29,7 @@ async function handleValidation(event) {
     if (btn.disabled) return;
     const message = document.getElementById('validation-message');
     message.textContent = '';
-    groupUrl = '';
+
     if (!APPS_SCRIPT_URL) {
         message.textContent = 'A consulta de alunos estará disponível em breve. Se precisar, fale com o suporte.';
         return;
@@ -52,6 +60,7 @@ async function handleValidation(event) {
     try {
         const url = new URL(APPS_SCRIPT_URL);
         url.searchParams.set('email', email);
+        url.searchParams.set('tipo', studentType);
         const response = await fetch(url, { signal: AbortSignal.timeout(20000), cache: 'no-store' });
         if (!response.ok) throw new Error('service');
         const data = await response.json();
@@ -65,14 +74,20 @@ async function handleValidation(event) {
             goToStep('error');
             return;
         }
-        if (GROUP_URL || data.groupUrl) {
-            const target = new URL(GROUP_URL || data.groupUrl);
-            if (target.protocol !== 'https:') throw new Error('invalid_destination');
-            groupUrl = target.href;
+        if (data.tipo !== studentType) throw new Error('outdated_script');
+        if (data.tipo === 'extensao') {
+            const text = `Olá! Sou aluno de um curso de extensão da Ambiental Pro. Meu e-mail de cadastro é ${email}. Quero resgatar meu cashback e fazer minha matrícula em uma pós-graduação.`;
+            const whatsapp = new URL(`https://wa.me/${COMMERCIAL_PHONE}`);
+            whatsapp.searchParams.set('text', text);
+            document.getElementById('cashback-whatsapp').href = whatsapp.href;
+            goToStep('cashback');
+            return;
         }
         window.location.assign(new URL('/black/pos/', window.location.origin).href);
     } catch (error) {
-        message.textContent = error.message === 'configuration'
+        message.textContent = error.message === 'outdated_script'
+            ? 'A validação está sendo atualizada. Tente novamente em instantes ou fale com o suporte.'
+            : error.message === 'configuration'
             ? 'A consulta de alunos precisa ser configurada. Fale com o suporte.'
             : 'Não foi possível consultar seu cadastro agora. Tente novamente ou fale com o suporte.';
     } finally {
@@ -88,3 +103,5 @@ async function handleValidation(event) {
 window.goToStep = goToStep;
 window.redirectTo = redirectTo;
 window.handleValidation = handleValidation;
+
+window.selectStudentType = selectStudentType;

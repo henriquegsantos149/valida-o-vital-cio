@@ -103,3 +103,5 @@ a:focus-visible,button:focus-visible {outline:2px solid #10b6c7;outline-offset:5
     padding-top: 10px;
     padding-bottom: 6px;
 }
+
+.discount-label { color: #8ee322; font-weight: 700; margin-top: 16px; }

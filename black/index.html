@@ -35,13 +35,14 @@
 
             <p class="minor-title">Exclusivo para alunos</p>
             <h1 class="title">Você já é Pro. Sua Black Friday também.</h1>
-            <p class="subtitle">Quem já estuda com a Ambiental Pro ou já participou dos nossos congressos tem uma <strong>condição exclusiva de Black Friday.</strong> Valide seu cadastro para entrar no grupo exclusivo de alunos e participantes dos congressos.</p>
+            <p class="subtitle">Quem já estuda com a Ambiental Pro ou já participou dos nossos congressos tem uma <strong>condição exclusiva de Black Friday.</strong> Selecione seu perfil e valide seu cadastro para consultar seu benefício.</p>
 
             <div class="action-buttons">
-                <button class="btn btn-primary btn-full" onclick="goToStep(2)">
-                    <span class="btn-text">Conferir minha condição</span>
+                <button class="btn btn-primary btn-full" onclick="selectStudentType('pos')">
+                    <span class="btn-text">Sou aluno de pós-graduação</span>
                     <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
                 </button>
+                <button class="btn btn-primary btn-full" onclick="selectStudentType('extensao')"><span class="btn-text">Sou aluno de curso de extensão</span></button>
                 <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
                     <i class="ph ph-whatsapp-logo"></i>
                     <span class="btn-text">Falar com o suporte</span>
@@ -55,8 +56,8 @@
                 <img src="logo.png" alt="Ambiental Pro" class="logo-main">
             </div>
 
-            <h1 class="title">Confirme seu cadastro</h1>
-            <p class="subtitle">Informe o e-mail usado na matrícula para liberar seu acesso ao grupo exclusivo de Black Friday para alunos.</p>
+            <h1 class="title" id="validation-title">Confirme seu cadastro</h1>
+            <p class="subtitle">Informe o e-mail usado na matrícula para consultar seu benefício.</p>
 
             <p id="validation-message" role="status" aria-live="polite"></p>
             <form id="validation-form" onsubmit="handleValidation(event)">
@@ -80,29 +81,14 @@
             </form>
         </div>
 
-        <!-- TELA 3A: Sucesso -->
-        <div id="step-success" class="wizard-step shape-brand layer-1 card-overlay text-center">
-            <div class="logo-container">
-                <img src="logo.png" alt="Ambiental Pro" class="logo-main">
-            </div>
-
-            <div class="status-icon success">
-                <i class="ph ph-check-circle"></i>
-            </div>
-
-            <h1 class="title">Você está na lista!</h1>
-            <p class="subtitle" id="group-message">Seu e-mail consta na nossa lista de alunos. O acesso ao grupo será disponibilizado em breve.</p>
-
-            <div class="action-buttons">
-                <button id="btn-group" hidden class="btn btn-primary btn-full" onclick="redirectTo('aluno')">
-                    <span class="btn-text">Entrar no grupo</span>
-                    <i class="ph ph-arrow-right btn-icon-right normal-icon"></i>
-                </button>
-                <button class="btn btn-support btn-full" onclick="redirectTo('suporte')">
-                    <i class="ph ph-whatsapp-logo"></i>
-                    <span class="btn-text">Ainda tenho dúvidas</span>
-                </button>
-            </div>
+        <div id="step-cashback" class="wizard-step shape-brand layer-1 card-overlay text-center">
+            <div class="logo-container"><img src="logo.png" alt="Ambiental Pro" class="logo-main"></div>
+            <div class="status-icon success"><i class="ph ph-check-circle"></i></div>
+            <p class="minor-title">Cadastro validado</p>
+            <h1 class="title">Resgate aqui o seu cashback e faça a sua matrícula.</h1>
+            <p class="subtitle">Fale com nosso time comercial para resgatar seu benefício e dar o próximo passo na sua formação.</p>
+            <a id="cashback-whatsapp" class="btn btn-primary btn-full" target="_blank" rel="noopener noreferrer">Resgatar meu cashback</a>
+            <button type="button" class="btn btn-text-only" onclick="goToStep(1)">Voltar</button>
         </div>
 
         <!-- TELA 3B: Erro -->
