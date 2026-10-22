@@ -1,6 +1,6 @@
 // Preencha com a URL /exec da implantação de integrations/black-friday.gs.
 // Não reutilize o endpoint da oferta anterior.
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFw1Qolr9t-MKoEa4kwcGpTKmzvTktBHqj0Ifgi7dkVKQLZk4Iu4UZpmQPbO0zVYA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIOMu93oKoKIaJqsdjBTfah5DYu90NGtJb1I0Uy8BJ7-1vWNblh1Gl8CWNcphoV0Ls/exec';
 const COMMERCIAL_PHONE = '5521982639824';
 const SUPPORT_URL = 'https://tinyurl.com/suporte-AP';
 let studentType = 'pos';
