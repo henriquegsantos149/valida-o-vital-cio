@@ -55,13 +55,17 @@ async function handleValidation(event) {
     const progressTimer = setInterval(() => {
         percentage = Math.min(95, Math.floor(95 * (1 - Math.exp(-(Date.now() - startedAt) / 4500))));
         renderProgress(percentage);
-        if (Date.now() - startedAt > 10000) status.textContent = 'A consulta está demorando um pouco. Aguarde mais alguns instantes.';
+        if (Date.now() - startedAt > 20000) {
+            status.textContent = 'Ainda estamos consultando seu cadastro. A resposta pode levar até um minuto.';
+        } else if (Date.now() - startedAt > 10000) {
+            status.textContent = 'A consulta está demorando um pouco. Aguarde mais alguns instantes.';
+        }
     }, 250);
     try {
         const url = new URL(APPS_SCRIPT_URL);
         url.searchParams.set('email', email);
         url.searchParams.set('tipo', studentType);
-        const response = await fetch(url, { signal: AbortSignal.timeout(20000), cache: 'no-store' });
+        const response = await fetch(url, { signal: AbortSignal.timeout(60000), cache: 'no-store' });
         if (!response.ok) throw new Error('service');
         const data = await response.json();
         if (data.error === 'configuration') throw new Error('configuration');
@@ -85,7 +89,11 @@ async function handleValidation(event) {
         }
         window.location.assign(new URL('/black/pos/', window.location.origin).href);
     } catch (error) {
-        message.textContent = error.message === 'outdated_script'
+        message.textContent = error.name === 'TimeoutError'
+            ? 'A consulta demorou mais que o esperado. Tente novamente em instantes.'
+            : error instanceof TypeError
+            ? 'Não conseguimos conectar ao serviço de validação. Verifique sua conexão e tente novamente.'
+            : error.message === 'outdated_script'
             ? 'A validação está sendo atualizada. Tente novamente em instantes ou fale com o suporte.'
             : error.message === 'configuration'
             ? 'A consulta de alunos precisa ser configurada. Fale com o suporte.'
