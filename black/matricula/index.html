@@ -16,6 +16,7 @@
     <!-- CSS e Ícones -->
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bonus.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
@@ -116,6 +117,15 @@
     </main>
 
     <script type="module" src="./script.js"></script>
+<dialog id="enrollment-bonus" class="enrollment-bonus" aria-labelledby="bonus-title" aria-describedby="bonus-description">
+    <button type="button" class="bonus-close" aria-label="Fechar aviso de bônus">×</button>
+    <p class="bonus-eyebrow">Black Friday para quem já é Pro</p>
+    <h2 id="bonus-title">Valide seu cadastro.<br><span>Descubra seu benefício.</span></h2>
+    <p id="bonus-description">Você já é aluno da Ambiental Pro? Confira a condição disponível para o seu perfil. Ao fazer sua matrícula até <strong>29/10 às 21h</strong>, você ganha um <strong>combo vitalício dos cursos de extensão.</strong></p>
+    <a href="#step-1" class="btn btn-primary bonus-cta">Conferir meu benefício</a>
+    <button type="button" class="bonus-dismiss">Continuar na página</button>
+</dialog>
+<script type="module" src="../bonus.js"></script>
 </body>
 
 </html>

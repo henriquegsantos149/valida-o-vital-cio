@@ -1,5 +1,3 @@
-import { launchConfetti } from './confetti.js';
-
 const dialog = document.getElementById('enrollment-bonus');
 const deadline = Date.parse('2026-10-29T21:00:00-03:00');
 
@@ -8,9 +6,10 @@ if (dialog && Date.now() < deadline) {
     const closeBonus = () => dialog.close();
     dialog.querySelector('.bonus-close').addEventListener('click', closeBonus);
     dialog.querySelector('.bonus-dismiss').addEventListener('click', closeBonus);
-    dialog.querySelector('.bonus-cta').addEventListener('click', () => {
+    dialog.querySelector('.bonus-cta').addEventListener('click', event => {
+        event.preventDefault();
         dialog.close();
-        document.getElementById('cursos')?.scrollIntoView({
+        document.getElementById('step-1')?.scrollIntoView({
             behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
         });
     });
@@ -30,5 +29,3 @@ if (dialog && Date.now() < deadline) {
     document.documentElement.classList.add('bonus-open');
     dialog.showModal();
 }
-
-launchConfetti();

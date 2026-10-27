@@ -1,3 +1,5 @@
+import { launchConfetti } from './confetti.js';
+
 document.querySelectorAll('.btn-more').forEach((button, index) => {
     const details = button.nextElementSibling;
     details.id = `course-details-${index}`;
@@ -14,3 +16,5 @@ document.querySelectorAll('.carousel-btn').forEach(button => {
         track.scrollBy({left: (button.classList.contains('prev-btn') ? -1 : 1) * track.clientWidth * 0.8, behavior: 'smooth'});
     });
 });
+
+if (window.location.pathname.includes('/matricula/pos')) launchConfetti();
