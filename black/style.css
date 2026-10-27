@@ -490,3 +490,11 @@ body::after {
 #validation-progress-fill { display: block; height: 100%; width: 0; background: var(--gradient-brand); transition: width .25s linear; border-radius: inherit; }
 #validation-progress-status { margin-top: 10px; font-size: .75rem; color: #a3a8ae; line-height: 1.5; text-align: center; }
 @media (prefers-reduced-motion: reduce) { #validation-progress-fill { transition: none; } }
+/* Cabeçalho mais compacto na confirmação de cashback. */
+#step-cashback .logo-container { margin-bottom: 1rem; }
+#step-cashback .status-icon {
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: .75rem;
+}
+#step-cashback .minor-title { margin-bottom: .75rem; }
